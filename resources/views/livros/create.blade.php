@@ -17,6 +17,7 @@
     </head>
 
     <body>
+    <a href="{{route('livros_ver')}}">Voltar para listagem</a>
     <form action="{{ route('salvar_livro') }}" method="post">
         @csrf
             <div><label for="nome">Nome</label><input type="text" name="nome" id="nome"></div>

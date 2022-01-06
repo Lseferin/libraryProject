@@ -16,7 +16,7 @@ class LivrosController extends Controller
             'autor' => $request->autor,
             'preco' => $request->preco,
         ]);
-        return "Livro salvo com sucesso";
+        return redirect('/livros/ver')->with('mensagem', 'Livro cadastrado com sucesso');
     }
     public function show(){
         $livros = Livro::all();
@@ -25,13 +25,14 @@ class LivrosController extends Controller
     public function destroy($id){
         $livro=Livro::findOrFail($id);
         $livro->delete();
-        return "Livro excluído com sucesso.";
+        return redirect('/livros/ver')->with('mensagem', 'Livro excluído com sucesso');
 
     }
     public function edit($id){
         $livro = Livro::findOrFail($id);
         return view('livros.editar', ['livro' => $livro]);
     }
+
     public function update(Request $request, $id){
         $livro = Livro::findOrFail($id);
         $livro->update([
@@ -39,6 +40,6 @@ class LivrosController extends Controller
             'autor' => $request->autor,
             'preco' => $request->preco,
         ]);
-        return "Livro atualizado com sucesso.";
+        return redirect('/livros/ver')->with('mensagem', 'Livro atualizado com sucesso');
     }
 }

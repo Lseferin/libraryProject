@@ -6,6 +6,8 @@
         <title>Vitrine de livros</title>
     </head>
         <body>
+        <p>{{session('mensagem')}}</p>
+        <a href="{{route('criar_livro')}}">Cadastrar</a>
             <table>
                 <tr><th>Autor</th><th>Título</th><th>Preço</th><th></th><th></th></tr>
                     @foreach($livros as $livro)
