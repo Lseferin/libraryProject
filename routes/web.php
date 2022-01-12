@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Input;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/livros/ver');
 });
+
+Route::get('/convert-to-json', function () {
+    return App\Livros::paginate(5);
+});
+
+Route::post('search',function(){
+//    $q = Input::get ( 'q' );
+//    $livro = \App\Models\Livro::where('name','LIKE','%'.$q.'%')->orWhere('autor','LIKE','%'.$q.'%')->get();
+//    if(count($livro) > 0)
+//        return redirect('/livros/ver')->withDetails($livro)->withQuery ( $q );
+//    else return redirect('/livros/ver')->withMessage('No Details found. Try to search again !');
+    $q = request()->get('q');
+    if ($q != ""){
+        $livro = \App\Models\Livro::where('nome', 'LIKE', '%' . $q . '%')
+            ->orWhere('autor', 'LIKE', '%' . $q . '%')
+            ->get();
+        if (count($livro) > 0)
+            return view('livros.search')->withDetails($livro)->withQuery($q);
+    }
+        return view('livros.search')->withMessage("Nenhum resultado encontrado!");
+});
+
 
 Route::get('/livro/novo','LivrosController@create')->name('criar_livro');
 Route::post('/livro/novo','LivrosController@store')->name('salvar_livro');
