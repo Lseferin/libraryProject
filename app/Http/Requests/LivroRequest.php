@@ -28,5 +28,18 @@ class LivroRequest extends FormRequest
             'autor' =>'required|min:3',
             'preco' =>'required|numeric|between:0,1000',
         ];
+
+    }
+
+    public function messages()
+    {
+        return [
+            'nome.required' => 'Preenchimento do campo é obrigatório',
+            'autor.required' => 'Preenchimento do campo é obrigatório',
+            'preco.required' => 'Preenchimento do campo é obrigatório',
+            'nome.min' => 'Campo nome deve ter pelo menos 5 caracteres',
+            'autor.min' => 'Campo autor deve ter pelo menos 3 caracteres',
+
+        ];
     }
 }

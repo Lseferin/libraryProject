@@ -18,16 +18,28 @@
     </head>
 
     <body>
-    <a href="{{route('livros_ver')}}">Voltar para listagem</a>
+    <table class="table">
+    <div class="container">
+    <table class="table">
+    <a class="btn btn-primary" href="{{route('livros_ver')}}">Voltar para listagem</a>
+    </table>
     <form action="{{ route('salvar_livro') }}" method="post">
         @csrf
+        <table class="table">
             <div><label for="nome">Nome</label><input type="text" name="nome" id="nome" value="{{old('nome')}}"></div>
         {!!$errors->first('nome', '<h1>:message</h1>')!!}
+        </table>
+        <table class="table">
             <div><label for="custo">Autor</label><label for="autor"></label><input type="text" name="autor" id="autor" value="{{old('autor')}}"></div>
         {!!$errors->first('autor', '<h1>:message</h1>')!!}
+        </table>
+        <table class="table">
             <div><label for="preco">Preço</label><input type="text" name="preco" id="preco" value="{{old('preco')}}"></div>
         {!!$errors->first('preco', ':message')!!}
+        </table>
             <button type="submit" class="btn btn-success" value="Submit Button">Salvar</button>
     </form>
+    </div>
+    </table>
     </body>
 </html>

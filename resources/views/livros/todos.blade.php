@@ -8,6 +8,7 @@
     </head>
         <body>
 
+        <div class="container">
         <table class="table">
         <p>{{session('mensagem')}}</p>
         <a class="btn btn-primary" href="{{route('criar_livro')}}">Cadastrar</a>
@@ -25,6 +26,7 @@
             </div>
         </form>
         </table>
+
 
         <div class="container">
             @if(isset($details))
@@ -71,6 +73,7 @@
         <div class="d-flex justify-content-center">
             {!! $livros->appends(request()->all())->links() !!}
 
+        </div>
         </div>
 
         </body>
